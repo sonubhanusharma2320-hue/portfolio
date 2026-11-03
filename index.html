@@ -394,22 +394,14 @@
             perspective: 1000px;
         }
 
+        /* Email flip card */
         .contact-link-wrapper {
             position: relative;
             height: 55px;
             cursor: pointer;
-        }
-
-        .contact-link-wrapper[data-type="email"] {
             width: 280px;
             flex-basis: 100%;
             margin-bottom: 0.5rem;
-        }
-
-        .contact-link-wrapper[data-type="github"],
-        .contact-link-wrapper[data-type="linkedin"] {
-            width: 260px;
-            flex: 0 1 auto;
         }
 
         .contact-link-inner {
@@ -464,6 +456,30 @@
             transform: rotateY(180deg) translateY(-2px);
         }
 
+        /* Social links (direct redirect) */
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 260px;
+            height: 55px;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            text-align: center;
+            background: linear-gradient(135deg, var(--tan) 0%, var(--coffee-mid) 100%);
+            color: var(--coffee-dark);
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            border-color: var(--tan-light);
+        }
+
         /* Footer */
         footer {
             background: var(--coffee-dark);
@@ -501,20 +517,19 @@
             }
 
             .contact-link-wrapper {
-                height: 48px;
-            }
-
-            .contact-link-wrapper[data-type="email"] {
                 width: 220px;
+                height: 48px;
                 margin-bottom: 0.8rem;
             }
 
-            .contact-link-wrapper[data-type="github"],
-            .contact-link-wrapper[data-type="linkedin"] {
-                width: 200px;
+            .contact-link-front, .contact-link-back {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.9rem;
             }
 
-            .contact-link-front, .contact-link-back {
+            .social-link {
+                width: 200px;
+                height: 48px;
                 padding: 0.8rem 1.2rem;
                 font-size: 0.9rem;
             }
@@ -548,20 +563,19 @@
             }
 
             .contact-link-wrapper {
+                width: 160px;
                 height: 44px;
             }
 
-            .contact-link-wrapper[data-type="email"] {
-                width: 160px;
-                margin-bottom: 0.8rem;
-            }
-
-            .contact-link-wrapper[data-type="github"],
-            .contact-link-wrapper[data-type="linkedin"] {
-                width: 140px;
-            }
-
             .contact-link-front, .contact-link-back {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.75rem;
+                border-radius: 30px;
+            }
+
+            .social-link {
+                width: 140px;
+                height: 44px;
                 padding: 0.6rem 0.8rem;
                 font-size: 0.75rem;
                 border-radius: 30px;
@@ -702,24 +716,22 @@
                 <h2>Let's Connect</h2>
                 <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your team.</p>
                 <div class="contact-links">
+                    <!-- Email (flip card) -->
                     <div class="contact-link-wrapper" data-type="email">
                         <div class="contact-link-inner">
                             <div class="contact-link-front">📧 Email</div>
                             <div class="contact-link-back">sonubhanusharma0282@gmail.com</div>
                         </div>
                     </div>
-                    <div class="contact-link-wrapper" data-type="github">
-                        <div class="contact-link-inner">
-                            <div class="contact-link-front">💻 GitHub</div>
-                            <div class="contact-link-back">https://github.com/sonubhanusharma2320-hue</div>
-                        </div>
-                    </div>
-                    <div class="contact-link-wrapper" data-type="linkedin">
-                        <div class="contact-link-inner">
-                            <div class="contact-link-front">🔗 LinkedIn</div>
-                            <div class="contact-link-back">https://www.linkedin.com/in/bhanu-sharma-0a691a3a8/</div>
-                        </div>
-                    </div>
+
+                    <!-- Instagram -->
+                    <a class="social-link" href="https://www.instagram.com/sonu.59745/" target="_blank" rel="noopener noreferrer">📸 Instagram</a>
+
+                    <!-- GitHub -->
+                    <a class="social-link" href="https://github.com/sonubhanusharma2320-hue" target="_blank" rel="noopener noreferrer">💻 GitHub</a>
+
+                    <!-- LinkedIn -->
+                    <a class="social-link" href="https://www.linkedin.com/in/bhanu-sharma-0a691a3a8/" target="_blank" rel="noopener noreferrer">🔗 LinkedIn</a>
                 </div>
             </div>
         </div>
@@ -745,26 +757,15 @@
             });
         });
 
-        // Contact card flip animation
+        // Email card flip animation
         document.querySelectorAll('.contact-link-wrapper').forEach(card => {
-            card.addEventListener('click', function(e) {
+            card.addEventListener('click', function (e) {
                 e.preventDefault();
                 this.classList.toggle('flipped');
-                
-                // Handle email click
-                if (this.dataset.type === 'email') {
-                    setTimeout(() => {
-                        const emailText = this.querySelector('.contact-link-back').textContent;
-                        if (this.classList.contains('flipped')) {
-                            // Optionally open email client
-                            // window.location.href = 'mailto:' + emailText;
-                        }
-                    }, 300);
-                }
             });
         });
 
-        // Add scroll animation
+        // Scroll animation for cards
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
